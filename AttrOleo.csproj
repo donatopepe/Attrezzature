@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-AttrOleo-5B642417-6637-49DA-AE77-BBA76F42ED0F</UserSecretsId>
+    <Description>Software gestione attrezzature oleodinamiche di stabilimento
+Gestore CPA Centrale cpacentrale.taranto@arcelormittal.com
+Developer dr.ing.Pepe Donato donato.pepe@arcelormittal.com dnt.ppe@gmail.com</Description>
+    <PackageProjectUrl>http://attroleo.gruppoilva.int</PackageProjectUrl>
+    <NeutralLanguage />
+    <Copyright>2019 - CPA Centrale</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'IdentitySampleApplication' " />
+  <ItemGroup>
+    <Compile Remove="Migrations\20191217135828_inizio2.cs" />
+    <Compile Remove="Migrations\20191217135828_inizio2.Designer.cs" />
+    <Compile Remove="Migrations\20191217135902_inizio.cs" />
+    <Compile Remove="Migrations\20191217135902_inizio.Designer.cs" />
+    <Compile Remove="Migrations\20200107075022_inizio.cs" />
+    <Compile Remove="Migrations\20200107075022_inizio.Designer.cs" />
+    <Compile Remove="Migrations\20200107080246_inizio.cs" />
+    <Compile Remove="Migrations\20200107080246_inizio.Designer.cs" />
+    <Compile Remove="Migrations\20200107082949_inizio.cs" />
+    <Compile Remove="Migrations\20200107082949_inizio.Designer.cs" />
+    <Compile Remove="Migrations\20200107084430_inizio.cs" />
+    <Compile Remove="Migrations\20200107084430_inizio.Designer.cs" />
+    <Compile Remove="Migrations\20200107142917_inizo.cs" />
+    <Compile Remove="Migrations\20200107142917_inizo.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+  </ItemGroup>
+
+</Project>
