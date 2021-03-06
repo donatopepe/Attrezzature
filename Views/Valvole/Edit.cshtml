@@ -1,0 +1,239 @@
+﻿@model AttrOleo.Models.Valvola
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Valvola</h4>
+<hr />
+<div class="row row-cols-2">
+    <div class="col-lg-3">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Modello" class="control-label"></label>
+                <input asp-for="Modello" class="form-control" />
+                <span asp-validation-for="Modello" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PressioneTaratura" class="control-label"></label>
+                <input asp-for="PressioneTaratura" class="form-control" />
+                <span asp-validation-for="PressioneTaratura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VerificaTaratura" class="control-label"></label>
+                <input asp-for="VerificaTaratura" class="form-control" />
+                <span asp-validation-for="VerificaTaratura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScadenzaTaratura" class="control-label"></label>
+                <input asp-for="ScadenzaTaratura" class="form-control" />
+                <span asp-validation-for="ScadenzaTaratura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area" class="control-label"></label>
+                <input asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reparto" class="control-label"></label>
+                <input asp-for="Reparto" class="form-control" />
+                <span asp-validation-for="Reparto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Impianto" class="control-label"></label>
+                <input asp-for="Impianto" class="form-control" />
+                <span asp-validation-for="Impianto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Matricola" class="control-label"></label>
+                <input asp-for="Matricola" class="form-control" />
+                <span asp-validation-for="Matricola" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costruttore" class="control-label"></label>
+                <input asp-for="Costruttore" class="form-control" />
+                <span asp-validation-for="Costruttore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stato" class="control-label"></label>
+                <select asp-for="Stato" class="form-control" id="stato"></select>
+                <span asp-validation-for="Stato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PressioneMontata" class="control-label"></label>
+                @Html.DropDownList("AggiungiPressione", (IEnumerable<SelectListItem>)ViewBag.Pressioni, "-- Seleziona recipiente da aggiungere --", new { @class = "form-control" })
+                <span asp-validation-for="PressioneMontata" class="text-danger" />
+                <input type="submit" name="operationType" value="AddPressione" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="operationType" value="AddFile" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-9">
+
+        @if ((Model.PressioneMontata != null) && (Model.PressioneMontata.Count > 0))
+        {
+            <h1>Recipiente su cui è montata</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Area)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Reparto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Impianto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Ubicazione)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Matricola)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.SerialNoFabbrica)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.ScadenzaFunzionalita)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.ScadenzaIntegrita)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Stato)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PressioneMontata)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Area)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Reparto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Impianto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Ubicazione)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Matricola)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.SerialNoFabbrica)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.ScadenzaFunzionalita)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.ScadenzaIntegrita)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pressione.Stato)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-controller="Pressioni" asp-route-id="@item.Pressione.Id">Details</a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+                                {
+                                    <a asp-action="DissociaPressione" asp-route-id="@Model.Id" asp-route-pressioneid="@item.Pressione.Id">Dissocia</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+
+
+        @if ((Model.Files != null) && (Model.Files.Count > 0))
+        {
+            <h1>File</h1>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].FileName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].CreatedTimestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].UpdatedTimestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].ContentType)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Files)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Download" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FileName)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedTimestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedTimestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContentType)
+                            </td>
+                            <td>
+                                <a asp-action="EditFile" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="DeleteFile" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
