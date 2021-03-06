@@ -1,0 +1,200 @@
+﻿@model AttrOleo.Models.Disco
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Disco</h4>
+<hr />
+<div class="row row-cols-2">
+    <div class="col-lg-3">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LottoNo" class="control-label"></label>
+                <input asp-for="LottoNo" class="form-control" />
+                <span asp-validation-for="LottoNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PressioneRottura" class="control-label"></label>
+                <input asp-for="PressioneRottura" class="form-control" />
+                <span asp-validation-for="PressioneRottura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Costruttore" class="control-label"></label>
+                <input asp-for="Costruttore" class="form-control" />
+                <span asp-validation-for="Costruttore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PressioneMontata" class="control-label"></label>
+                @Html.DropDownList("AggiungiPressione", (IEnumerable<SelectListItem>)ViewBag.Pressioni, "-- Seleziona recipiente da aggiungere --", new { @class = "form-control" })
+                <input type="submit" name="operationType" value="AddPressione" />
+                <span asp-validation-for="PressioneMontata" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="operationType" value="AddFile" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-lg-9">
+
+        @if ((Model.PressioneMontata != null) && (Model.PressioneMontata.Count > 0))
+        {
+            <h1>Recipiente su cui è montata</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Area)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Reparto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Impianto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Ubicazione)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Matricola)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].SerialNoFabbrica)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].ScadenzaFunzionalita)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].ScadenzaIntegrita)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PressioneMontata[0].Stato)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PressioneMontata)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Area)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Reparto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Impianto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ubicazione)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Matricola)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SerialNoFabbrica)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ScadenzaFunzionalita)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ScadenzaIntegrita)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stato)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-controller="Pressioni" asp-route-id="@item.Id">Details</a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+                                {
+                                    <a asp-action="DissociaPressione" asp-route-id="@Model.Id" asp-route-pressioneid="@item.Id">Dissocia</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+
+        @if ((Model.Files != null) && (Model.Files.Count > 0))
+        {
+            <h1>File</h1>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].FileName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].CreatedTimestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].UpdatedTimestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Files[0].ContentType)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Files)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Download" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FileName)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedTimestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedTimestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContentType)
+                            </td>
+                            <td>
+                                <a asp-action="EditFile" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="DeleteFile" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

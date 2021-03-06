@@ -1,0 +1,142 @@
+﻿@model AttrOleo.Controllers.PaginatedList<AttrOleo.Models.Disco>
+@*@model IEnumerable<AttrOleo.Models.Disco>*@
+
+@{
+    ViewData["Title"] = "Dischi di rottura";
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+{
+    <p>
+        <a asp-action="Edit">Create New</a>
+    </p>
+}
+
+
+<form asp-action="Index" method="get">
+    <p>
+        Find
+        <select name="currentFilter">
+            <option value=@Html.DisplayNameFor(model => model[0].LottoNo)>@Html.DisplayNameFor(model => model[0].LottoNo)</option>
+            <option value=@Html.DisplayNameFor(model => model[0].Costruttore)>@Html.DisplayNameFor(model => model[0].Costruttore)</option>
+        </select>
+        : <input type="text" name="SearchString">
+        <input type="submit" value="Find" />
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-searchString="@ViewData["SearchString"]"
+                   asp-route-sortParam="@ViewData["SortParam"]"
+                   asp-route-toggle="True"
+                   asp-route-sortOrder="@Html.DisplayNameFor(model => model[0].LottoNo)" method="get">
+                    @Html.DisplayNameFor(model => model[0].LottoNo)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-searchString="@ViewData["SearchString"]"
+                   asp-route-sortParam="@ViewData["SortParam"]"
+                   asp-route-toggle="True"
+                   asp-route-sortOrder="@Html.DisplayNameFor(model => model[0].Costruttore)" method="get">
+                    @Html.DisplayNameFor(model => model[0].Costruttore)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-searchString="@ViewData["SearchString"]"
+                   asp-route-sortParam="@ViewData["SortParam"]"
+                   asp-route-toggle="True"
+                   asp-route-sortOrder="@Html.DisplayNameFor(model => model[0].PressioneRottura)" method="get">
+                    @Html.DisplayNameFor(model => model[0].PressioneRottura)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-searchString="@ViewData["SearchString"]"
+                   asp-route-sortParam="@ViewData["SortParam"]"
+                   asp-route-toggle="True"
+                   asp-route-sortOrder="@Html.DisplayNameFor(model => model[0].DataCreazione)" method="get">
+                    @Html.DisplayNameFor(model => model[0].DataCreazione)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-searchString="@ViewData["SearchString"]"
+                   asp-route-sortParam="@ViewData["SortParam"]"
+                   asp-route-toggle="True"
+                   asp-route-sortOrder="@Html.DisplayNameFor(model => model[0].DataAggiornamento)" method="get">
+                    @Html.DisplayNameFor(model => model[0].DataAggiornamento)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LottoNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costruttore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PressioneRottura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCreazione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAggiornamento)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-sortOrder="@ViewData["SortOrder"]"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-searchString="@ViewData["SearchString"]"
+   asp-route-sortParam="@ViewData["SortParam"]"
+   asp-route-toggle="@ViewData["Toggle"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+@Model.PageIndex
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-sortOrder="@ViewData["SortOrder"]"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-searchString="@ViewData["SearchString"]"
+   asp-route-sortParam="@ViewData["SortParam"]"
+   asp-route-toggle="@ViewData["Toggle"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

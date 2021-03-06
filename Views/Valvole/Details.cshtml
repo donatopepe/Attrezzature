@@ -1,0 +1,252 @@
+﻿@model AttrOleo.Models.Valvola
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Valvola</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modello)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modello)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PressioneTaratura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PressioneTaratura)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VerificaTaratura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VerificaTaratura)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ScadenzaTaratura)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ScadenzaTaratura)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reparto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reparto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Impianto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Impianto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Matricola)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Matricola)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Costruttore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Costruttore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCreazione)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataCreazione)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataAggiornamento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataAggiornamento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TecnicoUltimoAggiornamento)
+        </dt>
+        <dd class="col-sm-10">
+            <a href="mailto:@Html.DisplayFor(model => model.TecnicoUltimoAggiornamento.Name)&subject=AttrOleo:%20&body=Contenuto%20del%20messaggio%20di%20posta">@Html.DisplayFor(model => model.TecnicoUltimoAggiornamento.Name)</a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Stato)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Stato)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+</div>
+
+@if ((Model.PressioneMontata!=null)&&(Model.PressioneMontata.Count > 0))
+{
+    <h1>Recipiente su cui è montata</h1>
+
+
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Reparto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Impianto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Ubicazione)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Matricola)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.SerialNoFabbrica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.ScadenzaFunzionalita)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.ScadenzaIntegrita)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PressioneMontata[0].Pressione.Stato)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PressioneMontata)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Reparto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Impianto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Ubicazione)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Matricola)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.SerialNoFabbrica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.ScadenzaFunzionalita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.ScadenzaIntegrita)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pressione.Stato)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Pressioni" asp-route-id="@item.Pressione.Id">Details</a>                   
+                        @*@if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+                        {
+                            <a asp-action="Edit" asp-controller="Pressioni" asp-route-id="@item.Pressione.Id">Edit</a>
+                            <a asp-action="Delete" asp-controller="Pressioni" asp-route-id="@item.Pressione.Id">Delete</a>
+                        }*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+
+@if ((Model.Files!=null)&&(Model.Files.Count > 0))
+{
+    <h1>File</h1>
+
+    <table class="table table-responsive">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].CreatedTimestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].UpdatedTimestamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Files[0].ContentType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Files)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Download" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FileName)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedTimestamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedTimestamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContentType)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("RW"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>
