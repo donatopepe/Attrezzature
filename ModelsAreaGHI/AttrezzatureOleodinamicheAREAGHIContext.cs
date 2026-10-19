@@ -48,7 +48,7 @@ namespace AttrOleo.ModelsAreaGHI
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=10.3.54.6\\SQLEXPRESS;Database=AttrezzatureOleodinamicheAREACALDO;User ID=sa;$1=[REDACTED]");
+                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__AreaGHIConnection") ?? throw new InvalidOperationException("ConnectionStrings__AreaGHIConnection must be configured."));
             }
         }
 

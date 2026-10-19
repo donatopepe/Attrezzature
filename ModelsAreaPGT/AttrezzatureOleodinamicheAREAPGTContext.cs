@@ -47,7 +47,7 @@ namespace AttrOleo.ModelsAreaPGT
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=10.3.54.50;Database=AttrezzatureOleodinamiche;User ID=sa;$1=[REDACTED]");
+                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__AreaPGTConnection") ?? throw new InvalidOperationException("ConnectionStrings__AreaPGTConnection must be configured."));
             }
         }
 

@@ -46,7 +46,7 @@ namespace AttrOleo.ModelsAreaLAM
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=10.3.26.94;Database=AttrezzatureOleodinamiche;User ID=sa;$1=[REDACTED]");
+                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings__AreaLAMConnection") ?? throw new InvalidOperationException("ConnectionStrings__AreaLAMConnection must be configured."));
             }
         }
 

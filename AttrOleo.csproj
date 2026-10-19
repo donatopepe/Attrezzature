@@ -3,12 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-AttrOleo-5B642417-6637-49DA-AE77-BBA76F42ED0F</UserSecretsId>
-    <Description>Software gestione attrezzature oleodinamiche di stabilimento
-Gestore CPA Centrale [REDACTED_PRIVATE_REFERENCE].taranto@[REDACTED_PRIVATE_REFERENCE].com
-Developer dr.ing.Pepe Donato donato.pepe@[REDACTED_PRIVATE_REFERENCE].com dnt.ppe@gmail.com</Description>
-    <PackageProjectUrl>http://attroleo.[REDACTED_PRIVATE_REFERENCE].int</PackageProjectUrl>
+    <Description>Software dimostrativo per gestione attrezzature oleodinamiche</Description>
     <NeutralLanguage />
-    <Copyright>2019 - CPA Centrale</Copyright>
+    <Copyright>2019</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'IdentitySampleApplication' " />
